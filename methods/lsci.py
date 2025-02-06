@@ -2,6 +2,8 @@ import jax
 import jax.numpy as jnp
 from jax import vmap, grad, jit, random
 
+import pcax
+
 def warp01(cdf):
     _min = jnp.min(cdf, axis = 0)[None,]
     _max = jnp.max(cdf, axis = 0)[None,]

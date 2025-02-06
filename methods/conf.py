@@ -2,6 +2,9 @@ import jax
 import jax.numpy as jnp
 from jax import vmap, grad, jit, random
 
+import pcax
+from lsci import *
+
 def conf_band(residuals, pca_state, alpha):
     res_proj = pcax.transform(pca_state, residuals)
     dval_conf = jnp.mean(local_tukey_self(res_proj, res_proj, 1/res_proj.shape[0]), axis = 0)
