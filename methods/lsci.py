@@ -44,7 +44,6 @@ local_tukey_vmap = vmap(local_tukey, (1, 1, None))
 local_tukey_self = vmap(local_tukey, (None, 0, None))
 local_tukey_self = jit(vmap(local_tukey_self, (1, 1, None)))
 
-
 def random_phi(rng, rval, weight):
     phi = local_quantile(rval, jax.random.uniform(rng), weight)
     return phi
