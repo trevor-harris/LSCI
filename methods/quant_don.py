@@ -13,7 +13,7 @@ def quant_don(quant_model, xval, xtest, yval, alpha):
     yval = yval.reshape(nval, -1)
     
     quant_val = quant_model(xval).reshape(nval, -1)
-    quant_test = quant_model(xtest).reshape(nval, -1)
+    quant_test = quant_model(xtest).reshape(ntest, -1)
     
     alpha_adj = jnp.ceil((1-alpha) * (nval + 1))/(nval)
     
