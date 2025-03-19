@@ -57,7 +57,7 @@ class ProbANO(nnx.Module):
     def __call__(self, x):
         mu = self.mu_ano(x)
         log_sd = self.sd_ano(x)
-        return mu, jnp.exp(log_sd)
+        return mu, nnx.softplus(log_sd)
     
     
 class DropANO(nnx.Module):
