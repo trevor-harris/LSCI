@@ -4,6 +4,8 @@ import jax
 import jax.numpy as jnp
 from jax import vmap, grad, jit, random
 
+import torch
+
 def split_data(data, lag, horizon):
     horizon = horizon-1
     y_t = data[(lag + horizon):][:,None]
@@ -13,6 +15,9 @@ def split_data(data, lag, horizon):
 def torch2jax(x):
     return jnp.array(x.numpy())
 
+def jax2torch(x):
+    return torch.Tensor(np.array(x))
+
 def conv(x, k):
-    return jnp.convolve(x, k, mode = 'valid')
+    return jnp.convolve(x, k, mode = 'same')
 conv = jit(vmap(conv, (0, None)))
