@@ -27,20 +27,29 @@ local_tukey_vmap = vmap(local_tukey, (1, 1, None))
 local_tukey_self = vmap(local_tukey, (None, 0, None))
 local_tukey_self = jit(vmap(local_tukey_self, (1, 1, None)))
 
-def lsci_state(xval, rval, npc):
+def lsci_state(xval, rval, npc, localization = 'pca'):
+    nval = xval.shape[0]
     xval = xval.squeeze()
     rval = rval.squeeze()
     pca_state = pcax.fit(rval, n_components=npc)
     rval2 = pcax.transform(pca_state, rval)
-    xval2 = pcax.transform(pca_state, xval)
-    return [rval2, xval2, pca_state]
+    
+    if localization == 'pca':
+        xval2 = pcax.transform(pca_state, xval)
+    else:
+        xval2 = xval.reshape(nval, -1)
+    return [rval2, xval2, localization, pca_state]
 
 def lsci(xtest, state, alpha, nsamp, gamma = 0.1, rng = random.PRNGKey(0)):
-    rval2, xval2, pca_state = state
+    rval2, xval2, localization, pca_state = state
     
     nval = rval2.shape[0]
     npc = rval2.shape[1]
-    xtest2 = pcax.transform(pca_state, xtest[None,])
+
+    if localization == 'pca':
+        xtest2 = pcax.transform(pca_state, xtest[None,])
+    else:
+        xtest2 = xtest.flatten()[None,]
     
     alpha = 1 - jnp.ceil((gamma*nval + 1) * (1 - alpha))/(gamma*nval)
 
