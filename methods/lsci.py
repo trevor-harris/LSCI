@@ -61,7 +61,7 @@ def lsci(xtest, state, alpha, nsamp, gamma = 0.1, rng = random.PRNGKey(0)):
     local_quants = jnp.argmax(local_cdfs[:,:,None] > unif.T[None,:,:], axis = 0)
     local_phi = quants[local_quants].T
     
-    dval = jnp.mean(local_tukey_self(rval2, rval2, weight), axis = 0)
+    dval = jnp.mean(local_tukey_self(rval2, rval2, weight), axis = 0) * jnp.min(local_tukey_self(rval2, rval2, weight), axis = 0)
     qval = jnp.quantile(dval, alpha)
     dphi = jnp.mean(local_tukey_self(rval2, local_phi, weight), axis = 0)
 
