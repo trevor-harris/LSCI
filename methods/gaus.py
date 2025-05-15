@@ -11,11 +11,14 @@ def gaussian_score(res, mu, sd):
 gaussian_score = vmap(gaussian_score, (0, None, None))
 
 def gaus_band(residuals, pca_state, alpha):
+    n = residuals.shape[0]
+    adj_alpha = jnp.ceil((n+1)*(1-alpha))/n
+    
     res_proj = pcax.transform(pca_state, residuals)
     mu = jnp.mean(res_proj, axis = 0)
     sd = jnp.std(res_proj, axis = 0)
     dval_conf = gaussian_score(res_proj, mu, sd)
-    qval_conf = jnp.quantile(dval_conf, alpha)
+    qval_conf = jnp.quantile(dval_conf, 1-adj_alpha)
     conf_ens = pcax.recover(pca_state, res_proj[dval_conf > qval_conf])
     conf_lower = jnp.min(conf_ens, axis = 0)
     conf_upper = jnp.max(conf_ens, axis = 0)
