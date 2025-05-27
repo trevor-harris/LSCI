@@ -21,3 +21,19 @@ def jax2torch(x):
 def conv(x, k):
     return jnp.convolve(x, k, mode = 'same')
 conv = jit(vmap(conv, (0, None)))
+
+def fourier_sample(rng, n, p, n_freq = 20, intercept = True):
+    x = jnp.linspace(0, 1, p)
+    f = 0
+    for i in range(n_freq):
+        rng, key1, key2 = random.split(rng, 3)
+        
+        an = 1/(i+1) * random.normal(key1, (n, 1))
+        bn = 1/(i+1) * random.normal(key2, (n, 1))
+
+        f += an * jnp.cos(2*jnp.pi * i * x)[None,]
+        f += bn * jnp.sin(2*jnp.pi * i * x)[None,]
+
+    if intercept:
+        f += random.normal(rng, (n, 1))
+    return f
