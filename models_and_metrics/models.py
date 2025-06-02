@@ -158,8 +158,8 @@ class ProbFNO(nn.Module):
 class ProbSFNO(nn.Module):
     def __init__(self, in_chan = 1):
         super().__init__()
-        self.mu_fno = SFNO(n_modes=(16,32), hidden_channels=64, in_channels=in_chan, out_channels=1)
-        self.sd_fno = SFNO(n_modes=(16,32), hidden_channels=64, in_channels=in_chan, out_channels=1)
+        self.mu_fno = FNO(n_modes=(16,32), hidden_channels=64, in_channels=in_chan, out_channels=1)
+        self.sd_fno = FNO(n_modes=(16,32), hidden_channels=64, in_channels=in_chan, out_channels=1)
 
     def __call__(self, x):
         mu = self.mu_fno(x)
