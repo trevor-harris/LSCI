@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: LSCI
+Version: 0.0.1
+Summary: Local Spectral Conformal Inference for Operator Models
+Author-email: Trevor Harris <trevor.a.harris@uconn.edu>
+Project-URL: Homepage, https://github.com/trevor-harris/LSCI
+Project-URL: Issues, https://github.com/trevor-harris/LSCI/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# LSCI
+
+Local Spectral Conformal Inference for Operator Models
+
+### Overview
+
+### Installation
+
+### Examples
+
+### Notes
+
+### Cite us
+
+### References

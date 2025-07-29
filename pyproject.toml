@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lsci"
+version = "0.0.1"
+authors = [
+  { name="Trevor Harris", email="trevor.a.harris@uconn.edu" },
+]
+description = "Local Spectral Conformal Inference for Operator Models"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/trevor-harris/LSCI"
+Issues = "https://github.com/trevor-harris/LSCI/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["lsci"]

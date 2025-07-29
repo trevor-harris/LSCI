@@ -1,0 +1,8 @@
+LICENSE
+README.md
+pyproject.toml
+src/lsci/__init__.py
+src/lsci.egg-info/PKG-INFO
+src/lsci.egg-info/SOURCES.txt
+src/lsci.egg-info/dependency_links.txt
+src/lsci.egg-info/top_level.txt
