@@ -21,15 +21,15 @@ from lsci.conformal import lsci
 # generate data and predictions
 n, p = 2000, 100
 data_rng = random.key(0)
-data_keys = random.split(data_rng, 6)
+data_keys = random.split(data_rng, 4)
 
 # covariates
 xval = random.normal(data_keys[0], (n, p))
-xtest = random.normal(data_keys[3], (n//2, p))
+xtest = random.normal(data_keys[1], (n//2, p))
 
 # prediction residuals
-rval = 0.5 + random.normal(data_keys[1], (n, p))
-rtest = 0.5 + random.normal(data_keys[1], (n//2, p))
+rval = 0.5 + random.normal(data_keys[2], (n, p))
+rtest = 0.5 + random.normal(data_keys[3], (n//2, p))
 
 # pre-compute local weights
 local_weights = lsci.localize(xval, xtest, 5)
