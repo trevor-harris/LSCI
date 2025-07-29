@@ -23,17 +23,13 @@ n, p = 2000, 100
 data_rng = random.key(0)
 data_keys = random.split(data_rng, 6)
 
+# covariates
 xval = random.normal(data_keys[0], (n, p))
-yval = 1 + random.normal(data_keys[1], (n, p))
-yval_hat = 1.2 + random.normal(data_keys[2], (n, p))
-
 xtest = random.normal(data_keys[3], (n//2, p))
-ytest = 1 + random.normal(data_keys[4], (n//2, p))
-ytest_hat = 1.2 + random.normal(data_keys[5], (n//2, p))
 
-rval = yval - yval_hat
-rtest = ytest - ytest_hat
-
+# prediction residuals
+rval = 0.5 + random.normal(data_keys[1], (n, p))
+rtest = 0.5 + random.normal(data_keys[1], (n//2, p))
 
 # pre-compute local weights
 local_weights = lsci.localize(xval, xtest, 5)
