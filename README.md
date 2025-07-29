@@ -17,6 +17,7 @@ First, we sample synethic regression data to mimic a standard conformal inferenc
 ```python
 import jax
 import jax.numpy as jnp
+import jax.random as random
 from lsci.conformal import lsci
 
 # generate data and predictions
