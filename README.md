@@ -18,8 +18,8 @@ import jax
 import jax.numpy as jnp
 from lsci.conformal import lsci
 
+# generate data and predictions
 n, p = 2000, 100
-
 data_rng = random.key(0)
 data_keys = random.split(data_rng, 6)
 
