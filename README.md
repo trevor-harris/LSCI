@@ -13,6 +13,7 @@ pip install LSCI/
 ```
 ### Examples
 
+First, we sample synethic regression data to mimic a standard conformal inference scenario. In this scenario, each covariate function is observed at `p = 100` sample points and consists of pure white noise. The residuals are simulated with a small bias also as pure white noise.
 ```python
 import jax
 import jax.numpy as jnp
@@ -30,7 +31,10 @@ xtest = random.normal(data_keys[1], (n//2, p))
 # prediction residuals
 rval = 0.5 + random.normal(data_keys[2], (n, p))
 rtest = 0.5 + random.normal(data_keys[3], (n//2, p))
+```
 
+Compute the theoretical prediction sets and evaluate the out of sample coverage. This does not require any sampling.
+```python
 # pre-compute local weights
 local_weights = lsci.localize(xval, xtest, 5)
 
@@ -45,7 +49,10 @@ quant_val = lsci.local_quantile(depth_val, alpha)
 
 # check coverage
 jnp.mean(depth_test > quant_val) # 0.901
+```
 
+Generate a ensemble representation of the prediction set using spectral sampling and a depth filter. The ensemble is computed at a single time point.
+```python
 # sample ensemble at test point X_i
 i = 10
 n_samp = 5000
