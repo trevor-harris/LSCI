@@ -17,7 +17,7 @@ Forthcoming
 
 ### Notes
 
-This package is currently under heavy development. This paper has not been peer-reviewed and exists as-is as a preprint currently.
+This package is currently under heavy development. This paper has not yet been peer-reviewed and exists as-is as a preprint currently.
 
 ### Cite us
 
